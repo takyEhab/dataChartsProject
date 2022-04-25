@@ -12,15 +12,6 @@ const getAllData = async (expiryDate, formatedString) => {
   return data;
 };
 
-// function submitForm(e) {
-//   e.preventDefault();
-//   var data = new FormData(form);
-//   for (const [name, value] of data) {
-//     console.log(name, value);
-//   }
-
-//   loading();
-// }
 const getData = (data) => {
   return data.map((item) => ({
     time: new Date(`${item.Date}, ${item.Time}`).getTime() / 1000 + 330 * 60,
@@ -166,13 +157,6 @@ let myForm = document.getElementById("myForm");
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
   var data = new FormData(myForm);
-  // console.log(data);
-  // const expiryDate =
-  // const formattedString =
-  // for (const [name, value] of data) {
-  //   console.log(name, value);
-  // }
-    console.log(data.get("instrument") + data.get("strike") + data.get("CE_PE"));
 
   displayChart(
     data.get("date"),
@@ -180,11 +164,12 @@ myForm.addEventListener("submit", function (e) {
   );
 });
 
-document.getElementById("date").addEventListener("change", function () {
+
+function getStrikes() {
   document.getElementById("strike").innerHTML = "";
   $.ajax({
     type: "GET",
-    url: `get-strikes/${$("#dateTry option:selected").html()}`,
+    url: `get-strikes/${$("#date option:selected").html()}`,
     success: function (response) {
       var select = document.getElementById("strike");
       for (var i = 0; i < response.length; i++) {
@@ -195,4 +180,6 @@ document.getElementById("date").addEventListener("change", function () {
       }
     },
   });
-});
+}
+getStrikes()
+document.getElementById("date").addEventListener("change", getStrikes);
