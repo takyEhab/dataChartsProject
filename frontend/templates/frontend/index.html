@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  href="{% static 'frontend/style.css' %}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'frontend/fav1.ico' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body style="background-color: #00101f">
+    <div class="container" style="margin-left: 1%;margin-right: 1%;">
+        <div class="card" style="background-color: #0e3354">
+            <div class="p-1.5 card-body">
+                <div class="row d-flex">
+                    <div class="ms-auto col-lg-12">
+                        <form id="myForm">
+                        <div class="row">
+                            <div class="col-lg-2"><small class="form-text" style="color: aliceblue;">Expiry
+                                    Date</small><select name="date" id="date" class="mt-1 mb-1 form-select form-select-sm"
+                                    style="background-color: rgb(199, 227, 254); font-weight: 600;">
+
+                                    {% for date in dates %}
+                                        <option id="{{date.id}}" value="{{date|date:"dF"|lower}}expiry">{{date|date:"d-F-Y" }}</option>
+                                    {% endfor %}
+                                    <!-- <option value="13aprilexpiry">13-April-2022</option> -->
+                                    <!-- <option value="">7-April-2022</option> -->
+                                </select></div>
+                            <div class="col-lg-2"><small class="form-text"
+                                    style="color: aliceblue; ">Instrument</small><select
+                                    name="instrument"
+                                    class="mt-1 mb-1 form-select form-select-sm"
+                                    style="background-color: rgb(199, 227, 254); font-weight: 600;">
+
+                                    <!-- {% for instrument in instruments %}
+                                    <option value="{{instrument|upper|cut:" "}}WK">{{instrument}}</option>
+                                {% endfor %} -->
+                                    <option value="NIFTYWK">NIFTY</option>
+                                    <option  value="BANKNIFTYWK">NIFTY BANK</option>
+                                </select></div>
+                            <div class="col-lg-2"><small class="form-text "
+                                    style="color: aliceblue;">Strike</small>
+                                    <select
+                                    name="strike"
+                                    id="strike"
+                                    class="mt-1 mb-1 form-select form-select-sm"
+                                    style="background-color: rgb(199, 227, 254); font-weight: 600;">
+
+                                <option value="" disabled selected>Select Expiry Date</option>
+                                    
+                                    <!-- {% for strike in strikes %}
+
+                                    <option value="{{strike}}">{{strike}}</option>
+                                {% endfor %} -->
+                                    <!-- <option value="36000">36000</option>
+                                    <option value="36100">36100</option>
+                                    <option value="36200">36200</option>
+                                    <option value="36300">36300</option>
+                                    <option value="36400">36400</option>
+                                    <option value="36500">36500</option>
+                                    <option value="36600">36600</option>
+                                    <option value="36700">36700</option>
+                                    <option value="36800">36800</option>
+                                    <option value="36900">36900</option>
+                                    <option value="37000">37000</option>
+                                    <option value="37100">37100</option>
+                                    <option value="37200">37200</option>
+                                    <option value="37300">37300</option>
+                                    <option value="37400">37400</option>
+                                    <option value="37500">37500</option>
+                                    <option value="37600">37600</option>
+                                    <option value="37700">37700</option>
+                                    <option value="37800">37800</option>
+                                    <option value="37900">37900</option>
+                                    <option value="38000">38000</option>
+                                    <option value="38100">38100</option>
+                                    <option value="38200">38200</option>
+                                    <option value="38300">38300</option>
+                                    <option value="38400">38400</option>
+                                    <option value="38500">38500</option>
+                                    <option value="38600">38600</option>
+                                    <option value="38700">38700</option>
+                                    <option value="38800">38800</option>
+                                    <option value="38900">38900</option>
+                                    <option value="39000">39000</option>
+                                    <option value="39100">39100</option>
+                                    <option value="39200">39200</option>
+                                    <option value="39300">39300</option>
+                                    <option value="39400">39400</option>
+                                    <option value="39500">39500</option>
+                                    <option value="39600">39600</option>
+                                    <option value="39700">39700</option>
+                                    <option value="39800">39800</option>
+                                    <option value="39900">39900</option>
+                                    <option value="40000">40000</option> -->
+                                </select>
+                            </div>
+                            <div class="col-lg-2"><small class="form-text "
+                                    style="color: aliceblue;">CE/PE</small>
+                                    <select
+                                    name="CE_PE"
+                                    class="mt-1 mb-1 form-select form-select-sm"
+                                    style="background-color: rgb(199, 227, 254); font-weight: 600;">
+                                    <option value="CE">CE</option>
+                                    <option value="PE">PE</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2 " style="margin-top: 24px;">
+                                <button type="submit" id="submitButton" class="btn btn-outline-primary"
+                                    style="color: aliceblue;">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="chart" style="margin-left: 1%;margin-right: 1%; display: none;">
+        <div class="switcher" id="myDIV">
+
+            <p style="margin-right: 8px;margin-bottom: 1px; color: #eff1f7;" id="name"></p>
+            <button class="switcher-item">1M</button>
+            <button class="switcher-item">3M</button>
+            <button class="switcher-item">5M</button>
+            <button onclick="activeOi();" id="OI" class="switcher-item">OI</button>
+            <button class="switcher-item">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
+
+                    <path fill="currentColor"
+                        d="M8.5 6A2.5 2.5 0 0 0 6 8.5V11h1V8.5C7 7.67 7.67 7 8.5 7H11V6H8.5zM6 17v2.5A2.5 2.5 0 0 0 8.5 22H11v-1H8.5A1.5 1.5 0 0 1 7 19.5V17H6zM19.5 7H17V6h2.5A2.5 2.5 0 0 1 22 8.5V11h-1V8.5c0-.83-.67-1.5-1.5-1.5zM22 19.5V17h-1v2.5c0 .83-.67 1.5-1.5 1.5H17v1h2.5a2.5 2.5 0 0 0 2.5-2.5z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div id="tvchart">
+
+        </div>
+    </div>
+    </div>
+    <div style="display: none;" id="loader"></div>
+
+</body>
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
+<script>
+</script>
+<script src="{% static 'frontend/black_candle.js' %}"></script>
+<script src="{% static 'frontend/styling.js' %}"></script>
+
+</html>
